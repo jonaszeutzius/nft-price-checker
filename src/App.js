@@ -20,7 +20,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>NFT Price Checker</h1>
+      <h1 className='title'>NFT Price Checker</h1>
+      <p>Input NFT token ID and contract address below to see recent transaction price.</p>
       <div className="inputContainer">
         <input 
           type="text"
@@ -36,6 +37,7 @@ const App = () => {
         />
         <button onClick={fetchNFTData}>Check Price</button>
       </div>
+      
       {nftData && (
         <div className="nftData">
           <img src={nftData.cached_images.small_250_250} alt={nftData.token_name} />

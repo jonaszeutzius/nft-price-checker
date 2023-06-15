@@ -6,6 +6,18 @@
   height: 100vh;
 }
 
+.title {
+  margin-top: 20px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .inputContainer {
   display: flex;
   justify-content: center;
@@ -33,6 +45,11 @@
   background-color: #0056b3;
 }
 
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .nftData {
   display: flex;
   flex-direction: column;
@@ -40,9 +57,10 @@
   margin-top: 20px;
 }
 
-.nftData img {
-  width: 200px;
-  height: 200px;
+.nftData .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nftData h2 {
