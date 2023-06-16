@@ -18,10 +18,11 @@ const App = () => {
 
     try {
       const response = await axios.request(options);
+      console.log('response', response)
       setNftData(response.data);
       setError(null); // Reset error state if successful
     } catch (error) {
-      setError('NFT not found'); // Set error message if API call fails
+      setError('Error: Make sure chain, contract address and token id are all valid.'); // Set error message if API call fails
     }
   };
 
@@ -56,9 +57,10 @@ const App = () => {
         />
         <button onClick={fetchNFTData}>Check Price</button>
       </div>
+      {console.log(nftData)}
       
       {error ?
-        <p>{error}</p> :
+        <p className='errorMessage'>{error}</p> :
         nftData && (
           <div className="nftData">
             <h2>{nftData.name}</h2>
@@ -71,7 +73,28 @@ const App = () => {
               {(nftData.rarity_rank)? `Rarity: ${nftData.rarity_rank} | ` : " "}
               Recent Price: ${parseFloat(nftData.recent_price.price_usd).toFixed(2)} {`(${nftData.recent_price.price} ${nftData.recent_price.price_currency})`}
             </p>
+            <table>
+                    <thead>
+                      <tr style={{ backgroundColor: '#f2f2f2' }}>
+                          <th style={{ padding: '10px', textAlign: 'left' }}>Name</th>
+                          <th style={{ padding: '10px', textAlign: 'left' }}>Token Type</th>
+                          <th style={{ padding: '10px', textAlign: 'left' }}>Contract Address</th>
+                          <th style={{ padding: '10px', textAlign: 'left' }}>Rarity Rank</th>
+                          <th style={{ padding: '10px', textAlign: 'left' }}>Rarity Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style={{ backgroundColor: '#f2f2f2' }}>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.token_name ? nftData.token_name : 'N/A'}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.token_type ? nftData.token_type : 'N/A'}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.contract_address ? nftData.contract_address : 'N/A'}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.rarity_rank ? nftData.rarity_rank : 'N/A'}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.rarity_score ? nftData.rarity_score : 'N/A'}</td>
+                      </tr>
+                    </tbody>
+                </table>
           </div>
+          
         )
       }
     

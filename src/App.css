@@ -12,6 +12,13 @@
   text-align: center;
 }
 
+.errorMessage {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+
 .image {
   display: flex;
   justify-content: center;
