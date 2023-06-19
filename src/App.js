@@ -38,7 +38,7 @@ const App = () => {
   return (
     <div className="App">
       <h1 className='title'>NFT Price Checker</h1>
-      <p>Select a chain and input contract address and token ID below to see recent transaction price.</p>
+      <p>Select a chain and input contract address and NFT token ID below to see recent transaction price.</p>
       <div className="inputContainer">
         <select name='blockchain' value={blockchain} onChange={handleBlockchainChange}>
           <option value="eth-main">eth-main</option>
