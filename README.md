@@ -259,9 +259,9 @@ You can now run your React application with the following command:
 This will start your React application and open it in your default web browser. You should see the following:
 - A dropdown menu to select a blockchain
 - Text boxes for contract address and token id
-- A verify check price button
+- A check price button
 
-Input the data of the NFT and click the check price button. You should see an image of the NFT and various NFT information including its price.
+Input the data of the NFT and click the check price button. You should see an image of the NFT and some of its information including the price.
 
 This wraps up our guide to creating an NFT Price Checking tool using the Blockspan API and React.js. Happy coding!
 
