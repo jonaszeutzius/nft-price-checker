@@ -78,3 +78,13 @@
   font-size: 1.2em;
   font-weight: bold;
 }
+
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  padding: 10px;
+  text-align: left;
+}
