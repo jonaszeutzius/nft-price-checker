@@ -22,7 +22,7 @@ const App = () => {
       setNftData(response.data);
       setError(null); // Reset error state if successful
     } catch (error) {
-      setError('Error: Make sure chain, contract address and token id are all valid.'); // Set error message if API call fails
+      setError('Error: Verify chain, contract address and token id are all valid!'); // Set error message if API call fails
     }
   };
 
@@ -30,10 +30,15 @@ const App = () => {
     setBlockchain(event.target.value);
   };
 
+  const checkData = (data) => {
+    const output = data ? data : 'N/A'
+    return output
+  }
+
   return (
     <div className="App">
       <h1 className='title'>NFT Price Checker</h1>
-      <p>Select a chain and input NFT token ID and contract address below to see recent transaction price.</p>
+      <p>Select a chain and input contract address and token ID below to see recent transaction price.</p>
       <div className="inputContainer">
         <select name='blockchain' value={blockchain} onChange={handleBlockchainChange}>
           <option value="eth-main">eth-main</option>
@@ -85,11 +90,11 @@ const App = () => {
                     </thead>
                     <tbody>
                       <tr style={{ backgroundColor: '#f2f2f2' }}>
-                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.token_name ? nftData.token_name : 'N/A'}</td>
-                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.token_type ? nftData.token_type : 'N/A'}</td>
-                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.contract_address ? nftData.contract_address : 'N/A'}</td>
-                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.rarity_rank ? nftData.rarity_rank : 'N/A'}</td>
-                          <td style={{ padding: '10px', textAlign: 'left' }}>{nftData.rarity_score ? nftData.rarity_score : 'N/A'}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{checkData(nftData.token_name)}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{checkData(nftData.token_type)}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{checkData(nftData.contract_address)}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{checkData(nftData.rarity_rank)}</td>
+                          <td style={{ padding: '10px', textAlign: 'left' }}>{checkData(nftData.rarity_score)}</td>
                       </tr>
                     </tbody>
                 </table>
