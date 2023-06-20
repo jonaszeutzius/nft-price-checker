@@ -67,13 +67,25 @@ const App = () => {
         <div className="nftData">
           <h2>{nftData.name}</h2>
           <div className="imageContainer">
-            <img className="image" src={nftData.cached_images.medium_500_500} alt={nftData.name} />
+            {nftData.cached_images && nftData.cached_images.medium_500_500 ? (
+              <img 
+                className="image" 
+                src={nftData.cached_images.medium_500_500} 
+                alt={nftData.name} />
+            ) : (
+              <div className='message'>
+                Image not available.
+              </div>
+            )}
           </div>
           <p className="message">
-            Id: {nftData.id} | Token Name: {nftData.token_name} |{' '}
-            {nftData.rarity_rank ? `Rarity: ${nftData.rarity_rank} | ` : ''}
-            Recent Price: ${parseFloat(nftData.recent_price.price_usd).toFixed(2)}{' '}
-            ({`${nftData.recent_price.price} ${nftData.recent_price.price_currency}`})
+            Id: {checkData(nftData.id)} | 
+            Token Name: {checkData(nftData.token_name)} | 
+            Rarity: {checkData(nftData.rarity_rank)} | 
+            Recent Price USD: {nftData.recent_price && nftData.recent_price.price_usd ? parseFloat(nftData.recent_price.price_usd).toFixed(2) : 'N/A'} |   
+            Recent Price Native Currency: {nftData.recent_price && nftData.recent_price.price ? 
+              `${parseFloat(nftData.recent_price.price).toFixed(5)} ${nftData.recent_price.price_currency}` : 
+              'N/A'}
           </p>
           <table>
             <thead>
