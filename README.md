@@ -54,7 +54,7 @@ const App = () => {
     const options = {
       method: 'GET',
       url: `http://localhost:8080/v1/nfts/contract/${contractAddress}/token/${tokenId}?chain=${blockchain}`,
-      headers: { accept: 'application/json', 'X-API-KEY': '2jhzbqIWanB8puiqySBIWJVf6Ovp7oPW' }
+      headers: { accept: 'application/json', 'X-API-KEY': 'YOUR_BLOCKSPAN_API_KEY' }
     };
 
     try {
@@ -156,7 +156,7 @@ export default App;
 
 ```
 
-Remember to replace `'YOUR_BLOCKSPAN_API_KEY'` with your actual Blockspan API key. 
+Remember to replace `YOUR_BLOCKSPAN_API_KEY` with your actual Blockspan API key. 
 
 
 ## STEP 4: STYLE YOUR COMPONENT
