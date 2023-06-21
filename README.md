@@ -53,13 +53,12 @@ const App = () => {
   const fetchNFTData = async () => {
     const options = {
       method: 'GET',
-      url: `https://api.blockspan.com/v1/nfts/contract/${contractAddress}/token/${tokenId}?chain=${blockchain}`,
-      headers: { accept: 'application/json', 'X-API-KEY': 'YOUR_BLOCKSPAN_API_KEY' }
+      url: `http://localhost:8080/v1/nfts/contract/${contractAddress}/token/${tokenId}?chain=${blockchain}`,
+      headers: { accept: 'application/json', 'X-API-KEY': '2jhzbqIWanB8puiqySBIWJVf6Ovp7oPW' }
     };
 
     try {
       const response = await axios.request(options);
-      console.log('response', response);
       setNftData(response.data);
       setError(null);
     } catch (error) {
@@ -100,7 +99,6 @@ const App = () => {
         />
         <button onClick={fetchNFTData}>Check Price</button>
       </div>
-      {console.log(nftData)}
 
       {error ? (
         <p className="errorMessage">{error}</p>
@@ -108,13 +106,25 @@ const App = () => {
         <div className="nftData">
           <h2>{nftData.name}</h2>
           <div className="imageContainer">
-            <img className="image" src={nftData.cached_images.medium_500_500} alt={nftData.name} />
+            {nftData.cached_images && nftData.cached_images.medium_500_500 ? (
+              <img 
+                className="image" 
+                src={nftData.cached_images.medium_500_500} 
+                alt={nftData.name} />
+            ) : (
+              <div className='message'>
+                Image not available.
+              </div>
+            )}
           </div>
           <p className="message">
-            Id: {nftData.id} | Token Name: {nftData.token_name} |{' '}
-            {nftData.rarity_rank ? `Rarity: ${nftData.rarity_rank} | ` : ''}
-            Recent Price: ${parseFloat(nftData.recent_price.price_usd).toFixed(2)}{' '}
-            ({`${nftData.recent_price.price} ${nftData.recent_price.price_currency}`})
+            Id: {checkData(nftData.id)} | 
+            Token Name: {checkData(nftData.token_name)} | 
+            Rarity: {checkData(nftData.rarity_rank)} | 
+            Recent Price USD: {nftData.recent_price && nftData.recent_price.price_usd ? parseFloat(nftData.recent_price.price_usd).toFixed(2) : 'N/A'} |   
+            Recent Price Native Currency: {nftData.recent_price && nftData.recent_price.price ? 
+              `${parseFloat(nftData.recent_price.price).toFixed(5)} ${nftData.recent_price.price_currency}` : 
+              'N/A'}
           </p>
           <table>
             <thead>
@@ -143,6 +153,7 @@ const App = () => {
 };
 
 export default App;
+
 ```
 
 Remember to replace `'YOUR_BLOCKSPAN_API_KEY'` with your actual Blockspan API key. 
@@ -158,7 +169,8 @@ To enhance the user interface in the browser, replace all code in the App.css fi
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
 }
 
 .title {
@@ -171,6 +183,10 @@ To enhance the user interface in the browser, replace all code in the App.css fi
   text-align: center;
   color: red;
   font-weight: bold;
+}
+
+.message {
+  text-align: center;
 }
 
 .image {
@@ -201,7 +217,6 @@ To enhance the user interface in the browser, replace all code in the App.css fi
   cursor: pointer;
 }
 
-/* ```css */
 .inputContainer button:hover {
   background-color: #0056b3;
 }
@@ -209,8 +224,14 @@ To enhance the user interface in the browser, replace all code in the App.css fi
 .imageContainer {
   display: flex;
   justify-content: center;
+  width: 100%; 
 }
 
+.imageContainer img {
+  width: 100%; 
+  max-width: 500px;
+  height: auto; 
+}
 .nftData {
   display: flex;
   flex-direction: column;
@@ -241,6 +262,11 @@ td {
 th {
   padding: 10px;
   text-align: left;
+}
+
+.tableContainer {
+  display: flex;
+  justify-content: center;
 }
 
 ```

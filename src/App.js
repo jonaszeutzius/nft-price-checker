@@ -18,7 +18,6 @@ const App = () => {
 
     try {
       const response = await axios.request(options);
-      console.log('response', response);
       setNftData(response.data);
       setError(null);
     } catch (error) {
@@ -59,7 +58,6 @@ const App = () => {
         />
         <button onClick={fetchNFTData}>Check Price</button>
       </div>
-      {console.log(nftData)}
 
       {error ? (
         <p className="errorMessage">{error}</p>
