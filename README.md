@@ -1,7 +1,7 @@
 # NFT PRICE CHECKER
 
 
-## Using the Blockspan API with React to Display NFT Market Data
+## USING THE BLOCKSPAN API WITH REACT TO DISPLAY NFT MARKET DATA
 
 In the world of digital art and collectibles, Non-Fungible Tokens (NFTs) have taken center stage, creating a bustling market of unique digital assets. As enthusiasts, collectors, or developers, there's often a need to keep a pulse on the ever-changing market value of these unique tokens. Understanding this, wouldn't it be great if you could create an application to check the current market price of a specific NFT at your fingertips? With the Blockspan API and React, this isn't just possible — it's straightforward!
 
@@ -53,7 +53,7 @@ const App = () => {
   const fetchNFTData = async () => {
     const options = {
       method: 'GET',
-      url: `http://localhost:8080/v1/nfts/contract/${contractAddress}/token/${tokenId}?chain=${blockchain}`,
+      url: `https://api.blockspan.com/v1/nfts/contract/${contractAddress}/token/${tokenId}?chain=${blockchain}`,
       headers: { accept: 'application/json', 'X-API-KEY': 'YOUR_BLOCKSPAN_API_KEY' }
     };
 
@@ -270,11 +270,6 @@ th {
 }
 
 ```
-
-Make sure to import this CSS file into your React component:
-
-`import './App.css';`
-
 
 ## STEP 5: RUN YOUR APPLICATION
 
